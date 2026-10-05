@@ -1,0 +1,126 @@
+$spotify-green: #1cd760;
+$spotify-black: #121212;
+$spotify-light-black: #212121;
+$spotify-grey: #535353;
+$spotify-light-grey: #b3b3b3;
+
+// edit profile modal styles
+.modalContainer {
+  width: max-content;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.editButton {
+  margin: 10px;
+  width: 100px;
+  padding: 0.7em 1.2em;
+  background-color: white;
+  border: 0px;
+  border-radius: 40px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: black;
+}
+
+.inputFieldContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.modalFieldContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.modalFieldContainer.playlist {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  width: 400px;
+}
+
+.create {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create .modalFieldContainer {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.modalFieldContainer .inputLabel {
+  margin: 0 10px;
+}
+
+.inputField {
+  width: 250px;
+  border-width: 0;
+  margin: 10px;
+  background-color: $spotify-grey;
+  color: white;
+}
+
+.inputField::placeholder {
+  color: $spotify-light-grey;
+}
+
+.editDisclaimer {
+  font-weight: 500;
+  font-size: x-small;
+}
+
+// delete modal
+.deleteButton {
+  margin: 10px;
+  width: 100px;
+  padding: 0.7em 1.2em;
+  background-color: white;
+  border: 0px;
+  border-radius: 40px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  color: red;
+}
+
+.inputFieldContainer .details {
+  color: red;
+}
+
+.playlistSelect {
+  width: 350px;
+  height: 35px;
+  background-color: $spotify-light-grey;
+  border-radius: 5px;
+  margin: 0px;
+  padding-right: 10px;
+  color: black;
+}
+
+.create-link {
+  color: white;
+  margin: 10px 0px 20px;
+}
+
+.create-link:hover {
+  text-decoration: underline;
+}
+
+.create-link p {
+  font-size: 14px;
+  font-weight: 400;
+}

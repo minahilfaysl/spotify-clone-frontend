@@ -1,0 +1,84 @@
+$spotify-green: #1cd760;
+$spotify-black: #121212;
+$spotify-light-black: #212121;
+$spotify-grey: #535353;
+$spotify-light-grey: #b3b3b3;
+
+.searchBarContainer {
+    display: flex;
+    flex: 0.7;
+    flex-direction: row;
+    background-color: $spotify-light-black;
+    border-radius: 40px;
+    color: $spotify-light-grey;
+    padding: 2px 20px;
+    border-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.searchBarContainer:focus-within {
+    color: white;
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+}
+
+.searchBar {
+    width: 200%;
+    padding: 2px 20px;
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    color: white;
+}
+
+.searchBar:focus {
+    outline: none!important;
+}
+
+.searchBar::placeholder {
+    color: $spotify-light-grey;
+}
+
+.FaSearch {
+    width: 40px;
+    height: 40px;
+}
+
+.genreCard {
+    padding: 20px;
+    min-width: 100px;
+    min-height: 100px;
+    width: 12vw;
+    height: 12vw;
+    max-width: 120px;
+    max-height: 120px;
+    border-radius: 15px;
+    display: flex;
+    // word-break: break-all;
+}
+
+.genreCard h3 {
+    margin: 0;
+    text-transform: capitalize;
+}
+
+.genreCardContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    // justify-content: space-around;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 150px;
+}
+
+.genreButton {
+    display: flex;
+    text-align: left;
+}
+
+.searchResults {
+    margin-bottom: 50px;
+}

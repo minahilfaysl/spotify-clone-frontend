@@ -1,0 +1,25 @@
+$spotify-green: #1cd760;
+$spotify-black: #121212;
+$spotify-light-black: #212121;
+$spotify-grey: #535353;
+$spotify-light-grey: #b3b3b3;
+
+.profileContentContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(18,20,23, 0.3);
+  margin: 0px -20px;
+  padding: 20px;
+  padding-bottom: 150px;
+}
+
+.followButton {
+  width: fit-content;
+  padding: 0px 30px;
+  border-color: $spotify-grey;
+  border-radius: 40px;
+  border-width: 1px;
+  border-style: solid;
+  color: white;
+  // background-color: #121212;
+}

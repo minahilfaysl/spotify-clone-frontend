@@ -1,0 +1,75 @@
+$spotify-green: #1cd760;
+$spotify-black: #121212;
+$spotify-light-black: #212121;
+$spotify-grey: #535353;
+$spotify-light-grey: #b3b3b3;
+
+.userDetailsContainer {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  padding-top: 60px;
+  padding-bottom: 20px;
+}
+
+.userProfilePicture {
+  object-fit: cover;
+  border-radius: 200px;
+  width: 200px;
+  height: 200px;
+  margin-right: 10px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15), 0 -10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.coverPicture {
+  object-fit: cover;
+  border-radius: 5px;
+  width: 200px;
+  height: 200px;
+  margin-right: 20px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15), 0 -10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+}
+
+.userDetails h1 {
+  font-size: 5.5vw;
+  margin: 0px;
+  margin-bottom: 10px;
+}
+
+.userDetails p {
+  font-size: small;
+  font-weight: 500;
+}
+
+.openModalButton {
+  display:inline-block;
+  position:relative;
+}
+
+// upload icon that get displayed on hover
+.photoUploadOption {
+  border-radius: 200px;
+  width: 200px;
+  height: 200px;
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.openModalButton:hover .photoUploadOption
+{
+  display: flex;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}

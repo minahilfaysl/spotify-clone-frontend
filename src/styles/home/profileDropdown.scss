@@ -1,0 +1,88 @@
+$spotify-green: #1cd760;
+$spotify-black: #121212;
+$spotify-light-black: #212121;
+$spotify-grey: #535353;
+$spotify-light-grey: #b3b3b3;
+
+.menu-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-trigger {
+  background: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0px;
+  margin: 0px;
+  border: none;
+  margin-left: auto; /* Strictly for positioning */
+}
+
+.menu-trigger img {
+  border-radius: 90px;
+}
+
+.profileButton {
+  border-radius: 40px;
+  width: 24px;
+  height: 24px;
+  border: 4px solid rgba(0, 0, 0, .3);
+}
+
+.profileImage {
+  width: inherit;
+  height: inherit;
+  border-radius: inherit;
+}
+
+.profileButton:hover {
+  border: 4px solid rgba(0, 0, 0, .6);
+}
+
+.menu {
+  padding: 20px 20px 0px;
+  margin: 0px;
+  background: $spotify-black;
+  border-radius: 5px;
+  position: absolute;
+  top: 45px;
+  right: 0;
+  width: 200px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-20px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+}
+
+.menu.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.menu-link-a {
+  text-decoration: none;
+  color: white;
+  padding-bottom: 20px;
+  display: block;
+  margin: 0px;
+}
+
+.menu-link-a p {
+  padding: 0px;
+  margin: 0px;
+}
+
+.menuDivider {
+  display: block;
+  width: 100%;
+  border-style: inset;
+  border-width: 1px;
+  border-color: $spotify-grey;
+  margin-bottom: 20px;
+}

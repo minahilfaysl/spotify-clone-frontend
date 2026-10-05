@@ -1,0 +1,86 @@
+$spotify-green: #1cd760;
+$spotify-black: #121212;
+$spotify-light-black: #212121;
+$spotify-grey: #535353;
+$spotify-light-grey: #b3b3b3;
+
+.rhap_container {
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+}
+
+.rhap_current-time {
+  color: white;
+  font-size: 10px;
+}
+
+.rhap_time.rhap_total-time {
+  color: white;
+  font-size: 10px;
+}
+
+.rhap_main-controls-button{
+  color: white;
+}
+
+.rhap_progress-indicator {
+  background: $spotify-green;
+  display: none;
+}
+
+.rhap_progress-filled {
+  background: white;
+}
+
+.rhap_download-progress {
+  background: $spotify-grey;
+}
+
+.rhap_progress-bar.rhap_progress-bar-show-download {
+  height: 3px;
+}
+
+// main player on homepage
+.playerContainer {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  background-color: black;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 100px;
+  padding: 0 20px;
+}
+
+.playerSongDetails {
+  display: flex;
+  align-items: center;
+}
+
+.playerSongDetails .albumCover {
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+  margin-right: 15px;
+}
+
+.playerSongDetails .details {
+  margin-right: 20px;
+}
+
+.playerSongDetails p {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0px;
+}
+
+.playerSongDetails .artistName {
+  color: $spotify-light-grey;
+  font-size: 12px;
+  margin-top: 10px;
+  font-weight: 400;
+}

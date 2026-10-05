@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    background-color: black;
+    margin-bottom: 100px;
+    padding: 20px;
+}
+
+.logo {
+    width: 140px;
+    height: 40px;
+    align-self: center;
+}
+
+.logoText {
+    vertical-align: text-bottom;
+    font-size: x-small;
+    display: inline-block;
+    align-self: flex-end;
+}

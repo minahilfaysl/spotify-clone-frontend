@@ -1,0 +1,252 @@
+$spotify-green: #1cd760;
+$spotify-black: #121212;
+$spotify-light-black: #212121;
+$spotify-grey: #535353;
+$spotify-light-grey: #b3b3b3;
+
+.itemsContainer {
+  margin: 0 0 20px;
+}
+
+.itemsSubtitle {
+  margin: -10px 0 20px;
+  color: $spotify-light-grey;
+  font-size: small;
+}
+
+// preview item row
+.itemsRow {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  overflow-x: scroll;
+}
+
+// preview item cards
+.previewCardContainer {
+  background-color: rgba(0,0,0, 0.3);
+  border-radius: 5px;
+  padding: 20px 15px;
+  flex-direction: column;
+  width: 120px;
+}
+
+.previewCardPicture {
+  object-fit: cover;
+  width: 120px;
+  height: 120px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15), 0 -10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.previewCardPicture.artist {
+  border-radius: 200px;
+}
+.previewCardPicture.profile {
+  border-radius: 200px;
+}
+.previewCardPicture.playlist {
+  border-radius: 5px;
+}
+.previewCardPicture.album {
+  border-radius: 5px;
+}
+
+.previewCard.title {
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.previewCard.subtitle {
+  font-weight: 500;
+  color: $spotify-light-grey;
+  text-transform: capitalize;
+}
+
+// song cards ------------
+.songOptions {
+  display: none;
+}
+.songOptions.play {
+  color: white;
+}
+.songOptions.pause {
+  color: $spotify-green;
+}
+
+.songCardContainer {
+  padding: 0px 10px 0px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+}
+
+.songCardContainer.true {
+  color: $spotify-green;
+}
+
+.songCardContainer:hover {
+  border-radius: 5px;
+  background-color: rgba(0,0,0, 0.3);
+}
+.songCardContainer:hover .songOptions {
+  display: flex;
+}
+.songCardContainer:hover .songIndex {
+  display: none;
+}
+
+.songSection0 {
+  flex: 0.03;
+  display: flex;
+  justify-content: center;
+}
+
+.songSection1 {
+  flex: 0.6;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+.songSection2 {
+  flex: 0.28;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.songSection3 {
+  flex: 0.12;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.songSection4 {
+  width: 24px;
+}
+
+.songCardPicture {
+  object-fit: cover;
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15), 0 -10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.songDetails.title {
+  font-weight: 600;
+}
+
+.songDetails.subtitle {
+  font-size: small;
+  font-weight: 500;
+  color: $spotify-light-grey;
+  text-transform: capitalize;
+}
+
+.favourite.true {
+  color: $spotify-green,
+}
+
+.favourite.false {
+  color: $spotify-light-grey,
+}
+
+.favourite-album {
+  width: 30px;
+  height: 30px;
+}
+
+.favourite-album.true {
+  color: $spotify-green,
+}
+
+.favourite-album.false {
+  color: $spotify-light-grey,
+}
+
+// track list styling
+.itemsCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.trackListHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0px 65px 0px 20px;
+}
+
+.trackListHeader .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.trackListHeader p {
+  font-weight: 400;
+}
+
+// recently played item cards
+.recentsCardContainer {
+  background-color: rgba(87, 87, 87, 0.25);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  height: 64px;
+  overflow: hidden;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.recentsCardContainer:hover {
+  background-color: rgba(145, 145, 145, 0.25);
+}
+
+.recentsCardPicture {
+  object-fit: cover;
+  border-radius: 5px 0px 0px 5px;
+  width: 64px;
+  height: 64px;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.15), 0 -10px 10px rgba(0, 0, 0, 0.15);
+}
+
+.recentsCardContainer .title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+// card containers
+.recentlyPlayedContainer {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 10px 20px;
+}
+
+@media (max-width: 1000px){
+  .recentlyPlayedContainer {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 10px 20px;
+  }
+}
+
+.playlist-options-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}

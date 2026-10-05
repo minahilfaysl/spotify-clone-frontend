@@ -1,0 +1,30 @@
+$spotify-green: #1cd760;
+$spotify-black: #121212;
+$spotify-light-black: #212121;
+$spotify-grey: #535353;
+$spotify-light-grey: #b3b3b3;
+
+// create page
+.headingButton {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 5px;
+  width: 60vw;
+  padding: 0 10px;
+}
+
+.headingButton:hover {
+  background-color: rgba(0,0,0, 0.3);
+}
+
+.downArrowIcon {
+  color: white;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+// forms

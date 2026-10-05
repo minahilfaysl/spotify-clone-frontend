@@ -1,0 +1,47 @@
+$spotify-green: #1cd760;
+$spotify-black: #121212;
+$spotify-light-black: #212121;
+$spotify-grey: #535353;
+$spotify-light-grey: #b3b3b3;
+
+.footerContainer {
+  display: grid;
+  grid-template-columns: 200px 200px 200px;
+}
+
+.footerCol {
+  display: flex;
+  flex-direction: column;
+}
+
+.footerCol .title {
+  font-weight: 700;
+  color: white;
+}
+
+.footer p {
+  margin: 10px 0px;
+  font-weight: 500;
+  color: $spotify-light-grey;
+}
+
+.footer .divider {
+  margin: 40px 0px;
+}
+
+.footer .bottomText {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  font-size: small;
+}
+
+.footer {
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  margin: -20px;
+  padding: 20px;
+  background-image: linear-gradient(rgba(18,20,23, 0.3), #121212);
+  bottom: 0;
+}
