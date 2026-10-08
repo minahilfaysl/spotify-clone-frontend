@@ -8,6 +8,7 @@ import "../../styles/auth/form.scss";
 import { useGetUsersAlbumListQuery, useUploadSongMutation } from './artistsApiSlice';
 import Player from '../player/Player';
 import { GoAlertFill } from "react-icons/go";
+import { uploadSizeError } from '../../app/uploadLimits';
 
 
 const UploadSongForm = () => {
@@ -20,10 +21,18 @@ const UploadSongForm = () => {
   // for file upload
   const [preview, setPreview] = useState(defaultPhoto);
   const [selectedFile, setSelectedFile] = useState();
+  const [fileSizeError, setFileSizeError] = useState(null);
 
   const setFileValues = (event, setFieldValue) => {
     // set audio file values and duration
     let audioFile = event.currentTarget.files[0]
+    const sizeError = uploadSizeError(audioFile, 'This song')
+    setFileSizeError(sizeError)
+    if (sizeError) {
+      // keep the previous pick, if any
+      event.currentTarget.value = ''
+      return
+    }
     setFieldValue('audio_file', audioFile);
     if (!event.currentTarget.files || event.currentTarget.files.length === 0) {
       setSelectedFile(undefined)
@@ -136,6 +145,7 @@ const UploadSongForm = () => {
                 onChange={(event) => setFileValues(event, setFieldValue)}
               />
               <ErrorMessage className='errorMessage' name="audio_file" component="div" />
+              {fileSizeError && <div className='errorMessage'>{fileSizeError}</div>}
               {selectedFile && <Player source={URL.createObjectURL(selectedFile)}/>}
               
               <div className='checkbox'>
@@ -153,7 +163,9 @@ const UploadSongForm = () => {
               <p className={`serverMessage red`}><GoAlertFill />
                 {error.status == 400
                   ? "A song with this name already exists, please check again."
-                  : "An error occurred, please try again later"}
+                  : error.status == 413
+                    ? "That file is too large to upload. Please choose one under 4 MB."
+                    : "An error occurred, please try again later"}
               </p>}
             </Form>
           )}

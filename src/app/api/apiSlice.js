@@ -2,7 +2,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { setCredentials, logout } from '../../components/auth/authSlice';
 
 const baseQuery = fetchBaseQuery({
-    baseUrl: 'http://localhost:8000',
+    baseUrl: import.meta.env.VITE_API_URL || 'http://localhost:8000',
     credentials: 'same-origin',
     mode: "cors",
     prepareHeaders: (headers, { getState }) => {

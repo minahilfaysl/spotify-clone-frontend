@@ -128,3 +128,17 @@ Get Tracks by Genre: http://localhost:3000/genre/{id}
 ## Project status
 Development.
 
+## Deployment (Vercel)
+
+1. Import this repo into Vercel (framework preset: Vite).
+2. Add the environment variable `VITE_API_URL` with the deployed backend URL,
+   e.g. `https://spotify-clone-backend.vercel.app` (no trailing slash).
+3. Deploy. `vercel.json` rewrites all routes to `index.html`, so refreshing
+   any page works.
+
+Uploads (songs and photos) are limited to 4 MB because of Vercel's request
+size limit on the backend.
+
+For local development, copy `.env.example` to `.env` (defaults to
+`http://localhost:8000`).
+

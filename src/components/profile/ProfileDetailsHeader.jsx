@@ -6,6 +6,7 @@ import { prominent } from 'color.js'
 
 import "../../styles/userProfile/detailsHeader.scss";
 import { setBodyColor } from '../home/homeSlice';
+import photoOverlay from '../../assets/photo_overlay.png';
 
 const ProfileDetailsHeader = ({ type, item }) => {
   const dispatch = useDispatch()
@@ -59,7 +60,7 @@ const ProfileDetailsHeader = ({ type, item }) => {
       return (
         <button className='openModalButton' onClick={handleModalOpen}>
           <img className='userProfilePicture' src={dataToDisplay.photo}/>
-          <img className='photoUploadOption' src={'src/assets/photo_overlay.png'}/>
+          <img className='photoUploadOption' src={photoOverlay}/>
         </button>
       )
     } else if (type == 'profile' || type == 'artist') {

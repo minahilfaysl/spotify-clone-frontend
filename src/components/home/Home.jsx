@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import HomeHeader from './header';
+import HomeHeader from './Header';
 
 import "../../styles/home/body.scss";
 import Sidebar from './Sidebar';

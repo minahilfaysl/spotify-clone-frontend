@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { selectCurrentUser } from '../auth/authSlice';
 
 import '../../styles/userProfile/detailsHeader.scss'
+import photoOverlay from '../../assets/photo_overlay.png';
 
 const UserDetailsHeader = ({ handleModalOpen }) => {
   const user = useSelector(selectCurrentUser)
@@ -11,7 +12,7 @@ const UserDetailsHeader = ({ handleModalOpen }) => {
     <div className='userDetailsContainer'>
       <button className='openModalButton' onClick={handleModalOpen}>
         <img className='userProfilePicture' src={user.profile_photo}/>
-        <img className='photoUploadOption' src={'src/assets/photo_overlay.png'}/>
+        <img className='photoUploadOption' src={photoOverlay}/>
       </button>
       <div className='userDetails'>
         <p>Profile</p>

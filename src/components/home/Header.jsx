@@ -1,7 +1,7 @@
 import React from 'react';
 
 import "../../styles/home/header.scss";
-import ProfileDropdown from './ProfileDropDown';
+import ProfileDropdown from './ProfileDropdown';
 import SearchInputBar from '../search/SearchInputBar';
 
 const HomeHeader = () => {

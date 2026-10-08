@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import photoOverlay from '../assets/photo_overlay.png';
+import { uploadSizeError } from '../app/uploadLimits';
 
 /*
   props = {
@@ -13,6 +15,7 @@ const UploadPhotoField = ({ props }) => {
   const defaultPhoto = props.defaultPhoto
   const [selectedFile, setSelectedFile] = useState()
   const [preview, setPreview] = useState(defaultPhoto)
+  const [sizeError, setSizeError] = useState(null)
 
   useEffect(() => {
     // create a preview as a side effect, whenever selected file is changed
@@ -31,12 +34,20 @@ const UploadPhotoField = ({ props }) => {
   return (
     <div className='uploadPictureButtonContainer'>
       <img className={`uploadPicture ${props.type}`} src={preview}/>
-      <img className={`uploadOption ${props.type}`} src={'/src/assets/photo_overlay.png'}/>
+      <img className={`uploadOption ${props.type}`} src={photoOverlay}/>
       <input 
         id='imageUploadButton'
         type="file"
         name={props.name}
+        accept="image/*"
         onChange={(event) => {
+          const error = uploadSizeError(event.currentTarget.files[0], 'This photo')
+          setSizeError(error)
+          if (error) {
+            // keep the previous photo (initial value or last valid pick)
+            event.currentTarget.value = ''
+            return
+          }
           props.setFieldValue(props.name, event.currentTarget.files[0]);
           if (!event.currentTarget.files || event.currentTarget.files.length === 0) {
             setSelectedFile(undefined)
@@ -45,6 +56,7 @@ const UploadPhotoField = ({ props }) => {
           setSelectedFile(event.currentTarget.files[0])
         }}
       />
+      {sizeError && <div className='errorMessage'>{sizeError}</div>}
     </div>
   )
 };
