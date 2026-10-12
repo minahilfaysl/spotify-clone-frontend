@@ -54,14 +54,8 @@ export const artistsApiSlice = apiSlice
         }),
         invalidatesTags: ['TrackList'],
       }),
-      // followers
-      updateFollowers: builder.mutation({
-        query: ({username, data}) => ({
-          url: `api/userdata/followers/${username}/`,
-          method: 'PUT',
-          body: data,
-        }),
-      }),
+      // followers are updated by the backend when following
+      // (see updateFollowing in usersApiSlice)
     })
   })
 
@@ -77,5 +71,4 @@ export const {
   useUploadSongMutation,
   useUpdateSongMutation,
   useDeleteSongMutation,
-  useUpdateFollowersMutation,
 } = artistsApiSlice

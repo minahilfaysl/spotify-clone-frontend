@@ -13,7 +13,7 @@ export const homeApiSlice = apiSlice
       incrementStreams: builder.mutation({
         query: (songID) => ({
           url: `api/songs/${songID}/increment_streams/`,
-          method: 'GET',
+          method: 'POST',
         }),
       }),
       getRecentlyPlayedItems: builder.query({

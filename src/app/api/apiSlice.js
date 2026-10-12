@@ -17,21 +17,39 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args, api, extraOptions) => {
     let result = await baseQuery(args, api, extraOptions)
 
-    if (result?.error?.originalStatus === 403) {
-        console.log('sending refresh token')
-        // send refresh token to get new access token
-        const refreshResult = await baseQuery('/refresh', api, extraOptions)
-        console.log("refresh result:", refreshResult)
+    // An expired or invalid access token comes back as 401 Unauthorized.
+    // Use the refresh token to get a new access token, then retry once.
+    if (result?.error?.status === 401) {
+        const { user, token } = api.getState().auth
+        if (!token?.refresh) {
+            // not logged in (e.g. a failed login attempt): nothing to refresh
+            return result
+        }
 
-        if (refreshResult?.data) {
-            const user = api.getState().auth.user
-            // store the new token
-            api.dispatch(setCredentials({...refreshResult.data, user}))
-            // retry the original query with new access token
+        const refreshResult = await baseQuery({
+            url: '/api/users/token/refresh/',
+            method: 'POST',
+            body: { refresh: token.refresh },
+        }, api, extraOptions)
+
+        if (refreshResult?.data?.access) {
+            // keep the same refresh token, swap in the new access token
+            api.dispatch(setCredentials({
+                user,
+                token: { ...token, access: refreshResult.data.access },
+            }))
             result = await baseQuery(args, api, extraOptions)
         } else {
+            // the refresh token has expired too: sign out
             api.dispatch(logout())
         }
+    }
+
+    // Shared demo accounts are read-only; most forms fail silently, so tell
+    // the visitor why their change didn't happen.
+    const detail = result?.error?.data?.detail
+    if (result?.error?.status === 403 && typeof detail === 'string' && detail.startsWith('Demo accounts')) {
+        window.alert(detail)
     }
     return result
 }

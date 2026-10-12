@@ -4,9 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import '../../styles/userProfile/profileContent.scss';
 
 import { selectCurrentUser } from '../auth/authSlice';
-import { useUpdateFollowersMutation } from './artistsApiSlice';
 import { useUpdateFollowingMutation } from '../profile/usersApiSlice';
-import { getFollowingList } from '../home/homeSlice';
+import { getFollowingList, setFollowingList } from '../home/homeSlice';
 
 const FollowButton = ({ toFollow }) => {
   const dispatch = useDispatch()
@@ -14,28 +13,23 @@ const FollowButton = ({ toFollow }) => {
   const followingList = [...useSelector(getFollowingList)];
   const [isFollowing , setIsFollowing ] = useState(followingList.includes(toFollow.id))
 
-  const [ updateFollowers, { isSuccess: isFollowerSuccess }] = useUpdateFollowersMutation()
-  const [ updateFollowing, { isSuccess: isFollowingSuccess }] = useUpdateFollowingMutation()
+  const [ updateFollowing ] = useUpdateFollowingMutation()
 
   const handleClick = async () => {
     try {
-      // update followers list
-      let data = {followers: user.username}
-      let username = toFollow.username
-      await updateFollowers({username, data}).unwrap();
+      // one request: the backend updates my "following" and their
+      // "followers" together, so the two lists can't get out of sync
+      const response = await updateFollowing({
+        username: user.username,
+        data: { following: toFollow.username },
+      }).unwrap();
 
-      // update following list
-      data = {following: toFollow.username}
-      username = user.username
-      let response = await updateFollowing({username, data}).unwrap();
       if (response.status.includes("added")) {
         setIsFollowing(true)
-        followingList.push(toFollow.id)
-        dispatch(setLikedSongsList(followingList))
+        dispatch(setFollowingList([...followingList, toFollow.id]))
       } else {
         setIsFollowing(false);
-        followingList.pop(toFollow.id)
-        dispatch(setLikedSongsList([...followingList]))
+        dispatch(setFollowingList(followingList.filter((id) => id !== toFollow.id)))
       }
     } catch (err) {
       // handle error
