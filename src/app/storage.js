@@ -1,6 +1,4 @@
 // Saved login (user + tokens) in localStorage.
-// Reads never throw: a missing, "undefined" or corrupted value counts as
-// logged out instead of crashing the whole app on startup.
 
 export const readStored = (key) => {
   try {
@@ -24,4 +22,11 @@ export const saveCredentials = (user, token) => {
 export const clearCredentials = () => {
   localStorage.removeItem('user')
   localStorage.removeItem('token')
+}
+
+// The saved login, if it's complete (a user and an access token), else null.
+export const loadCredentials = () => {
+  const user = readStored('user')
+  const token = readStored('token')
+  return user && token?.access ? { user, token } : null
 }
