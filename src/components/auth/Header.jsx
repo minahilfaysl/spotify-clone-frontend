@@ -1,10 +1,11 @@
 import React from 'react';
 
 import "../../styles/auth/header.scss";
+import logo from '../../assets/icons/spotify-logo-white-text.png';
 
 const AuthHeader = () => (
   <div className='container'>
-    <img className='logo' src='https://www.edigitalagency.com.au/wp-content/uploads/Spotify-Logo-png-RGB-White.png' alt='Spotify clone logo' />
+    <img className='logo' src={logo} alt='Spotify clone logo' />
     <p className='logoText'>Clone</p>
   </div>
 );

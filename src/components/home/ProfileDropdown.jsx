@@ -5,13 +5,14 @@ import { selectCurrentUser } from '../auth/authSlice';
 
 import "../../styles/home/dropdown.scss";
 import { logout } from "../../components/auth/authSlice";
+import { readStored } from "../../app/storage";
 
 const ProfileDropdown = () => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 
 	// const user = useSelector(selectCurrentUser)
-	const user = JSON.parse(localStorage.getItem('user'))
+	const user = readStored('user') || {}
 
   const [isActive, setIsActive] = useState(false);
   const onClick = () => setIsActive(!isActive);

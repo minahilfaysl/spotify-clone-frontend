@@ -9,6 +9,7 @@ import AuthHeader from '../../components/auth/Header';
 import ToggleButton from '../../components/auth/ToggleButton';
 import { setCredentials } from './authSlice';
 import { useLoginMutation } from './authApiSlice';
+import { describeServerError } from '../../app/serverErrors';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,14 +22,16 @@ const Login = () => {
     try {
       let username = values.username;
       let password = values.password;
+      setServerError('')
       const userData = await login({ username, password }).unwrap();
       dispatch(setCredentials({...userData}))
       navigate('/')
     } catch (err) {
       if (err.status == 401) {
         setServerError("The email/username or password entered is incorrect. Please try again with the correct credentials.")
+      } else {
+        setServerError(describeServerError(err, "Unable to log in right now. Please try again."))
       }
-      // handle error
     }
   }
 

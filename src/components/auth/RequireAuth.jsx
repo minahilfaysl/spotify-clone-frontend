@@ -1,27 +1,26 @@
 import { useLocation, Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { selectCurrentToken } from "./authSlice";
-import { useDispatch } from 'react-redux';
-import { setCredentials } from './authSlice';
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { selectCurrentToken, setCredentials } from "./authSlice";
+import { readStored } from "../../app/storage";
 
 const RequireAuth = () => {
   const dispatch = useDispatch()
   const location = useLocation()
-  
-  let getToken = () => {
-    // check if user and token are stored in local storage
-    let token = useSelector(selectCurrentToken)
-    if (!token) {
-      const storedToken = JSON.parse(localStorage.getItem('token'))
-      const user = JSON.parse(localStorage.getItem('user'))
-      // if stored credentials exist, restore credentials
-      dispatch(setCredentials({user, token: storedToken}))
-      return storedToken
-    }
-    return token
-  }
+  const currentToken = useSelector(selectCurrentToken)
 
-  const token = getToken()
+  // after a page reload, restore the saved login (if it's valid)
+  const storedToken = currentToken ? null : readStored('token')
+  const storedUser = currentToken ? null : readStored('user')
+  const canRestore = Boolean(storedToken?.access && storedUser)
+
+  useEffect(() => {
+    if (canRestore) {
+      dispatch(setCredentials({ user: storedUser, token: storedToken }))
+    }
+  }, [canRestore])
+
+  const token = currentToken || (canRestore ? storedToken : null)
 
   return (
     token

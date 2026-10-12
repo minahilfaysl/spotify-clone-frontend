@@ -10,6 +10,7 @@ import { useSignupMutation } from './authApiSlice';
 import AuthHeader from '../../components/auth/Header';
 import AuthDatePicker from '../../components/auth/AuthDatePicker';
 import AuthGenderPicker from '../../components/auth/AuthGenderPicker';
+import { describeServerError } from '../../app/serverErrors';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -28,13 +29,16 @@ const Signup = () => {
         date_of_birth: new Date(values.year, values.month, values.day).toISOString().slice(0,10),
         gender: values.gender,
       }
+      setServerError('')
       const userData = await signup(request).unwrap();
+      if (!userData?.token?.access) {
+        // an older backend reported validation errors with a 200 status
+        throw { status: 400, data: userData }
+      }
       dispatch(setCredentials({...userData}))
       navigate('/')
     } catch (err) {
-      if (err.status == 401) {
-        setServerError("Unable to process this request at this time.")
-      }
+      setServerError(describeServerError(err, "Unable to sign up right now. Please try again."))
     }
   }
 

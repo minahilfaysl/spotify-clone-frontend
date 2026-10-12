@@ -4,11 +4,12 @@ import { selectCurrentUser, selectCurrentToken, setCredentials } from "../auth/a
 import { useUpdatePermissionMutation } from '../settings/settingsApiSlice';
 import Switch from "react-switch";
 import { setBodyColor } from "../home/homeSlice";
+import { readStored } from "../../app/storage";
 
 const Settings = () => {
   const dispatch = useDispatch();
-  const user = JSON.parse(localStorage.getItem('user'))
-  const token = JSON.parse(localStorage.getItem('token'))
+  const user = readStored('user')
+  const token = readStored('token')
   const [updatePermission, { isLoading }] = useUpdatePermissionMutation()
 
   const [isArtist, setIsArtist] = useState(user.is_artist)
