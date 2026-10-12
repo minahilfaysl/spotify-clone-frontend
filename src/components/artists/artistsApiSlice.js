@@ -13,6 +13,11 @@ export const artistsApiSlice = apiSlice
       getUsersAlbumList: builder.query({
         query: (username) => `/api/albums/?artist__username=${username}&ordering=-album_publish_year`
       }),
+      // every song by an artist (used to total their streams)
+      getArtistSongs: builder.query({
+        query: (artistID) => `/api/songs/?album__artist=${artistID}`,
+        providesTags: ['TrackList'],
+      }),
       getArtistsTopTracks: builder.query({
         query: (username) => `/api/songs/${username}/get_top_tracks/`,
         providesTags: ['TrackList'],
@@ -64,6 +69,7 @@ export const {
   useGetGenreListQuery,
   useGetUsersAlbumListQuery,
   useGetArtistsTopTracksQuery,
+  useGetArtistSongsQuery,
   useGetSongsByAlbumQuery,
   useLazyGetSongsByAlbumQuery,
   useGetAlbumDetailsQuery,
