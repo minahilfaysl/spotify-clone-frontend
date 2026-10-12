@@ -56,23 +56,23 @@ Features of the website include:
     4. Remove liked items
 15. Search <sup>new</sup>
     1. Search using genre
-    2. Seach using keyword
+    2. Search using keyword
 
 ## Clone the repository
 
-Run the following commands to clone the repository and test out the playlist branch.
+`$ git clone https://github.com/minahilfaysl/spotify-clone-frontend.git`
 
-`$ git init`
+`$ cd spotify-clone-frontend`
 
-`$ git clone https://gitlab.arbisoft.com/minahil.faisal/final-project-frontend.git`
-
-`$ cd final-project-frontend`
-
-`$ git pull origin playlist`
+The backend lives in [spotify-clone-backend](https://github.com/minahilfaysl/spotify-clone-backend).
 
 ## Installation / Project Setup
 
 This project uses React + Vite with HMR and ESLint rules.
+
+**No environment variables are needed for local development.** The app talks
+to the backend at `http://localhost:8000` by default. To point it somewhere
+else, copy `.env.example` to `.env` and change `VITE_API_URL` (optional).
 
 To setup the project, run
 
@@ -86,6 +86,9 @@ You can login using the following test credentials:
 
 username: minahil
 password: testing321
+
+(On the deployed site this demo account is read-only: it can browse, play,
+like and follow. Sign up for your own account to try uploading and editing.)
 
 **Note:** Make sure the backend for this project is running on `http://localhost:8000/`
 
@@ -125,20 +128,18 @@ Search: http://localhost:3000/search
 
 Get Tracks by Genre: http://localhost:3000/genre/{id}
 
-## Project status
-Development.
-
 ## Deployment (Vercel)
 
 1. Import this repo into Vercel (framework preset: Vite).
-2. Add the environment variable `VITE_API_URL` with the deployed backend URL,
-   e.g. `https://spotify-clone-backend.vercel.app` (no trailing slash).
+2. Add the environment variable `VITE_API_URL` with the deployed backend URL.
 3. Deploy. `vercel.json` rewrites all routes to `index.html`, so refreshing
    any page works.
 
 Uploads (songs and photos) are limited to 4 MB because of Vercel's request
 size limit on the backend.
 
-For local development, copy `.env.example` to `.env` (defaults to
-`http://localhost:8000`).
+`VITE_API_URL` is read at build time, so redeploy after changing it.
+
+## Project status
+Completed and deployed.
 
