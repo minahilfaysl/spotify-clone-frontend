@@ -140,6 +140,17 @@ size limit on the backend.
 
 `VITE_API_URL` is read at build time, so redeploy after changing it.
 
+## Future improvements
+
+- **Remember Me:** the switch on the login page is commented out (`TODO(remember-me)` in
+  `src/components/auth/Login.jsx`). Every login is currently remembered for up to 7 days.
+  Plan: save the login to `localStorage` when the switch is on and `sessionStorage` (cleared
+  when the browser closes) when it's off.
+- **Forgot password:** the link is commented out (`TODO(password-reset)`). It needs
+  password-reset endpoints and an email service in the backend, plus a "set a new password"
+  page here.
+- Direct signed uploads to storage, to lift the 4 MB upload limit.
+
 ## Project status
 Completed and deployed.
 

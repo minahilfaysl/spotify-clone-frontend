@@ -6,7 +6,8 @@ import * as Yup from "yup";
 
 import "../../styles/auth/form.scss";
 import AuthHeader from '../../components/auth/Header';
-import ToggleButton from '../../components/auth/ToggleButton';
+// TODO(remember-me): re-enable with the "Remember Me" switch below
+// import ToggleButton from '../../components/auth/ToggleButton';
 import { setCredentials } from './authSlice';
 import { useLoginMutation } from './authApiSlice';
 import { describeServerError } from '../../app/serverErrors';
@@ -55,7 +56,7 @@ const Login = () => {
       <div className='formContainer'>
         <h1>Log in to Spotify</h1>
         <Formik
-          initialValues={{ username: '', password: '', rememberMe: false }}
+          initialValues={{ username: '', password: '' }}
           validationSchema={LoginSchema}
           onSubmit={(values, { setSubmitting }) => {
             loginUser(values);
@@ -70,11 +71,15 @@ const Login = () => {
               <p className="inputLabel">Password</p>
               <Field className="input" type="password" name="password" placeholder="Password"/>
               <ErrorMessage className='errorMessage' name="password" component="div" />
+              {/* TODO(remember-me): the switch isn't wired up yet (every login is
+                  currently remembered). Plan: keep the login in localStorage when
+                  on, sessionStorage when off. See "Future improvements" in README.
               <ToggleButton props = {{
                 setFieldValue: setFieldValue,
                 fieldName: 'rememberMe',
                 value: values.rememberMe,
               }}/>
+              */}
               {serverError != '' && 
               <p className='errorMessage'>{serverError}</p>}
               <button className='authButton' type="submit">Log In</button>
@@ -82,7 +87,10 @@ const Login = () => {
           )}
         </Formik>
 
+        {/* TODO(password-reset): needs reset endpoints + an email service in the
+            backend and a reset page here. See "Future improvements" in README.
         <Link to=".." className="link">Forgot your password?</Link>
+        */}
         <div className='divider'/>
         <p className='signupText'>Don't have an account? <Link to="/auth/signup" className="link">Sign up for Spotify</Link></p>
       </div>
