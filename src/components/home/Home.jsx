@@ -3,7 +3,7 @@ import HomeHeader from './Header';
 
 import "../../styles/home/body.scss";
 import Sidebar from './Sidebar';
-import { Outlet, useNavigate } from 'react-router-dom';
+import { Outlet, useLocation, useNavigate } from 'react-router-dom';
 import HomePlayer from '../player/HomePlayer';
 import Footer from './Footer';
 import { useSelector } from 'react-redux';
@@ -12,11 +12,14 @@ import { getBodyColor } from './homeSlice';
 const Home = () => {
 
 	const navigate = useNavigate();
+	const location = useLocation();
 	const color = useSelector(getBodyColor)
 
 	useEffect(() => {
-		navigate('/home')
-	}, [])
+		if (location.pathname === '/') {
+			navigate('/home', { replace: true })
+		}
+	}, [location.pathname])
 
   return (
     <>

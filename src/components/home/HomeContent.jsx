@@ -71,7 +71,8 @@ const HomeContent = () => {
         prominent(photo, {
           format: 'hex',
           amount: 1,
-        }).then((color) => dispatch(setBodyColor(color)));
+        }).then((color) => dispatch(setBodyColor(color)))
+          .catch(() => {});
       } else {
         dispatch(setBodyColor("#272b37"))
       }

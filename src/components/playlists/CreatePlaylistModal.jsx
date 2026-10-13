@@ -9,6 +9,7 @@ import UploadPhotoField from '../UploadPhotoField';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import Fade from '@mui/material/Fade';
+import { toFormData } from '../../app/formData';
 
 
 const CreatePlaylistModal = ({ open, handleModalClose, item }) => {
@@ -70,10 +71,7 @@ const CreatePlaylistModal = ({ open, handleModalClose, item }) => {
               user: user.id,
             }}
             onSubmit={(values, { setSubmitting }) => {
-              var data = new FormData();
-              for (const [key, value] of Object.entries(values)) {
-                data.append(key, value);
-              }
+              const data = toFormData(values);
               handleSubmit(data)
               setSubmitting(false)
             }}

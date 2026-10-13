@@ -83,7 +83,8 @@ const ProfileDetailsHeader = ({ type, item }) => {
   prominent(dataToDisplay.photo, {
     format: 'hex',
     amount: 1,
-  }).then((color) => dispatch(setBodyColor(color)));
+  }).then((color) => dispatch(setBodyColor(color)))
+    .catch(() => {});
 
   const HeaderBasedOnPermission = () => {
     if ((type == 'profile' || type == 'artist') && dataToDisplay.isOwner) {

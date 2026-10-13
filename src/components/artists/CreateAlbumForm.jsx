@@ -8,6 +8,7 @@ import { useCreateAlbumMutation, useGetGenreListQuery } from './artistsApiSlice'
 import { selectCurrentUser } from '../auth/authSlice';
 import { useSelector } from 'react-redux';
 import { GoAlertFill } from "react-icons/go";
+import { toFormData } from '../../app/formData';
 
 
 const CreateAlbumForm = () => {
@@ -56,10 +57,7 @@ const CreateAlbumForm = () => {
           }}
           validationSchema={CreateAlbumSchema}
           onSubmit={(values, { setSubmitting }) => {
-            var data = new FormData();
-            for (const [key, value] of Object.entries(values)) {
-              data.append(key, value);
-            }
+            const data = toFormData(values);
             createNewAlbum(data)
             setSubmitting(false)
           }}

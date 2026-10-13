@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -7,10 +7,11 @@ const SearchInputBar = () => {
   const navigate = useNavigate();
   const [searchInput, setSearchInput] = useState('')
 
-  useEffect(() => {
-    navigate(`/search/${searchInput}`)
-  }, [searchInput])
-  
+  const handleChange = (e) => {
+    const value = e.target.value
+    setSearchInput(value)
+    navigate(value ? `/search/${encodeURIComponent(value)}` : '/search')
+  }
 
   if (location.pathname.includes('/search')) {
     return (
@@ -21,7 +22,7 @@ const SearchInputBar = () => {
           autoComplete="off"
           className='searchBar'
           value={searchInput}
-          onChange={(e) => setSearchInput(e.target.value)}
+          onChange={handleChange}
           placeholder='What do you want to listen to?'
           type="text"
           id="searchBar"

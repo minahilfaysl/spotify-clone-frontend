@@ -9,6 +9,7 @@ import { useGetUsersAlbumListQuery, useUploadSongMutation } from './artistsApiSl
 import Player from '../player/Player';
 import { GoAlertFill } from "react-icons/go";
 import { uploadSizeError } from '../../app/uploadLimits';
+import { toFormData } from '../../app/formData';
 
 
 const UploadSongForm = () => {
@@ -89,10 +90,7 @@ const UploadSongForm = () => {
           }}
           // validationSchema={UploadSongSchema}
           onSubmit={(values, { setSubmitting }) => {
-            var data = new FormData();
-            for (const [key, value] of Object.entries(values)) {
-              data.append(key, value);
-            }
+            const data = toFormData(values);
             uploadNewSong(data)
             setSubmitting(false)
           }}
